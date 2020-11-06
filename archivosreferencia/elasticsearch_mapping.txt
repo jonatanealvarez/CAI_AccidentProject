@@ -1,0 +1,31 @@
+---------------Creacion del indice en elastic, coleccion de documentos-----------
+PUT /accident/
+
+---------------Mapeo de los atributos tipo date, float y geo_point-----------------
+
+PUT /accident/_mapping
+{
+  "properties": {
+    "@timestamp": {
+      "type": "date"
+    },
+    "Distance(mi)": {
+      "type": "float"
+    },
+    "end_location": {
+      "type": "geo_point"
+    },
+    "start_location": {
+      "type": "geo_point"
+    },
+    "location": {
+      "type": "text",
+      "fields": {
+        "keyword": {
+          "type": "keyword",
+          "ignore_above": 256
+        }
+      }
+    }
+  }
+}
